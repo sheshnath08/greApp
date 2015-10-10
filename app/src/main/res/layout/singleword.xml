@@ -6,10 +6,48 @@
     android:clickable="true"
     android:background="?attr/selectableItemBackground">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom">
+
     <TextView
         android:id="@+id/wordTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"/>
+        android:text="Abase"
+        android:textAlignment="center"
+        android:singleLine="false"
+        android:textColor="#000e3e"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="20dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/meaningTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Humiliate, Degrade"
+            android:textAlignment="center"
+            android:singleLine="false"
+            android:textColor="#013153"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="15dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+        <View
+            android:layout_width="fill_parent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_height="2dp"
+            android:background="#7bbee4"/>
+
+    </LinearLayout>
 
 </FrameLayout>

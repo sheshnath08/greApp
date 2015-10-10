@@ -49,16 +49,20 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        private final TextView tvText;
+        private final TextView wordText;
+        private final TextView meaningText;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            tvText = (TextView) itemView.findViewById(R.id.wordTextView);
+            wordText = (TextView) itemView.findViewById(R.id.wordTextView);
+            meaningText = (TextView) itemView.findViewById(R.id.meaningTextView);
         }
 
-        public void bind(WordModel model) {
-            tvText.setText(model.getText());
+        public void bind(WordModel model)
+        {
+            wordText.setText(model.getWord());
+            meaningText.setText(model.getMeaning());
         }
     }
 

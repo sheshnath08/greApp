@@ -25,7 +25,7 @@ public class WordListFragment extends Fragment {
         return new WordListFragment();
     }
 
-    private static final String[] MOVIES = new String[]{
+    private static final String[]MOVIES = new String[]{
             "The Woman in Black: Angel of Death",
             "20 Once Again",
             "Taken 3",
@@ -104,7 +104,7 @@ public class WordListFragment extends Fragment {
         mModels = new ArrayList<>();
 
         for (String movie : MOVIES) {
-            mModels.add(new WordModel(movie));
+            mModels.add(new WordModel(movie,movie));
         }
 
         mAdapter = new WordListAdapter(getActivity(), mModels);

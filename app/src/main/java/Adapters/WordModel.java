@@ -5,13 +5,18 @@ package Adapters;
  */
 public class WordModel {
     private final String mWord;
+    private final String mMeaning;
 
-
-    public WordModel(String text) {
-        mWord = text;
+    public WordModel(String word, String meaning) {
+        mWord = word;
+        mMeaning = meaning;
     }
 
-    public String getText() {
+    public String getWord() {
         return mWord;
+    }
+
+    public String getMeaning(){
+        return mMeaning;
     }
 }
