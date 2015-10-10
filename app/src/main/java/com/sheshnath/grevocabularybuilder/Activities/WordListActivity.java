@@ -2,14 +2,9 @@ package com.sheshnath.grevocabularybuilder.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.sheshnath.grevocabularybuilder.R;
 
-import Adapters.MyAdapter;
 import Fragments.WordListFragment;
 
 public class WordListActivity extends AppCompatActivity {
