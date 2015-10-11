@@ -16,6 +16,7 @@ import java.util.List;
 
 import Adapters.WordListAdapter;
 import Adapters.WordModel;
+import Listners.RecyclerItemClickListner;
 
 /**
  * Created by Sheshnath on 10/9/2015.
@@ -90,7 +91,6 @@ public class WordListFragment extends Fragment {
         final View view = inflater.inflate(R.layout.wordlistfragment, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.wordListView);
-
         return view;
     }
 
@@ -109,6 +109,7 @@ public class WordListFragment extends Fragment {
 
         mAdapter = new WordListAdapter(getActivity(), mModels);
         mRecyclerView.setAdapter(mAdapter);
+        //TODO Add a Click listner here
     }
 
 }
