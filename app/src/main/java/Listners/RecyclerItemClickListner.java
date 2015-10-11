@@ -20,7 +20,7 @@ public class RecyclerItemClickListner implements RecyclerView.OnItemTouchListene
 
     GestureDetector mGestureDetector;
 
-    public void RecyclerItemClickListener(Context context, OnItemClickListener listener) {
+    public RecyclerItemClickListner(Context context, OnItemClickListener listener) {
         mListener = listener;
         mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override public boolean onSingleTapUp(MotionEvent e) {

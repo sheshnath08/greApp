@@ -109,6 +109,15 @@ public class WordListFragment extends Fragment {
 
         mAdapter = new WordListAdapter(getActivity(), mModels);
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListner(getContext(), new RecyclerItemClickListner.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+                        getFragmentManager().beginTransaction().replace(R.id.container,WordCardFragment.newInstance())
+                                .commit();
+                    }
+                })
+        );
         //TODO Add a Click listner here
     }
 
