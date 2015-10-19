@@ -34,7 +34,7 @@
             android:text="Humiliate, Degrade"
             android:textAlignment="center"
             android:singleLine="false"
-            android:textColor="#013153"
+            android:textColor="#1695A3"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:textSize="15dp"

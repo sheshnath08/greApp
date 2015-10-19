@@ -1,6 +1,9 @@
 package Fragments;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sheshnath.grevocabularybuilder.Activities.WordCardActivity;
 import com.sheshnath.grevocabularybuilder.R;
 
 import java.util.ArrayList;
@@ -54,24 +58,6 @@ public class WordListFragment extends Fragment {
             "Somewhere Only We Know",
             "Fifty Shades of Grey",
             "Dragon Blade",
-            "Zhong Kui: Snow Girl and the Dark Crystal",
-            "Badlapur",
-            "Hot Tub Time Machine 2",
-            "McFarland, USA",
-            "The Duff",
-            "The Second Best Exotic Marigold Hotel",
-            "A la mala",
-            "Focus",
-            "The Lazarus Effect",
-            "Chappie",
-            "Faults",
-            "Road Hard",
-            "Unfinished Business",
-            "Cinderella",
-            "NH10",
-            "Run All Night",
-            "X+Y",
-            "Furious 7",
             "Danny Collins",
             "Do You Believe?",
             "Jalaibee",
@@ -103,6 +89,7 @@ public class WordListFragment extends Fragment {
 
         mModels = new ArrayList<>();
 
+        //adding data to model list
         for (String movie : MOVIES) {
             mModels.add(new WordModel(movie,movie));
         }
@@ -113,8 +100,9 @@ public class WordListFragment extends Fragment {
                 new RecyclerItemClickListner(getContext(), new RecyclerItemClickListner.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         // TODO Handle item click
-                        getFragmentManager().beginTransaction().replace(R.id.container,WordCardFragment.newInstance())
-                                .commit();
+                        Intent intent = new Intent(getContext(), WordCardActivity.class);
+                        getActivity().startActivity(intent);
+                        //getFragmentManager().beginTransaction().replace(R.id.container, WordCardFragment.newInstance()).addToBackStack("word").commit();
                     }
                 })
         );
