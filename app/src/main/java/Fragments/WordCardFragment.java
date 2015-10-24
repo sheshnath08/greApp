@@ -19,7 +19,7 @@ public class WordCardFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.wordcardfragment, container, true);
+        final View view = inflater.inflate(R.layout.wordcardview, container, true);
         return view;
     }
 
