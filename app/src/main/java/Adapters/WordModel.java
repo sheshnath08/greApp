@@ -7,28 +7,36 @@ import org.json.JSONException;
  * Created by Sheshnath on 10/9/2015.
  */
 public class WordModel {
-    private final String mWord;
-    private final String mMeaning;
-    private final String mMnemonics;
-    private final String mExample;
+    private String mWord;
+    private String mMeaning;
+    private String mMnemonics;
+    private String mExample;
 
-    //TODO use getter and setters.
 
-    public WordModel(String word, String meaning, String mMnemonics, String mExample) {
-        mWord = word;
-        mMeaning = meaning;
+    public WordModel(String mWord,String mMeaning,String mExample,String mMnemonics){
+        this.mWord=mWord;
+        this.mMeaning = mMeaning;
+        this.mExample = mExample;
         this.mMnemonics = mMnemonics;
+    }
+
+    public void setmExample(String mExample) {
         this.mExample = mExample;
     }
 
-
-    //This is to initialize single word usingJSON array.
-    public WordModel(JSONArray word) throws JSONException {
-        mWord = word.getString(0);
-        mMeaning = word.getString(1);
-        mExample = word.getString(2);
-        mMnemonics = word.getString(3);
+    public void setmWord(String mWord) {
+        this.mWord = mWord;
     }
+
+    public void setmMeaning(String mMeaning) {
+        this.mMeaning = mMeaning;
+    }
+
+    public void setmMnemonics(String mMnemonics) {
+        this.mMnemonics = mMnemonics;
+    }
+
+
 
     public String getWord() {
         return mWord;

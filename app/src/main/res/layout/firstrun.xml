@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCFFF5"
+    tools:context=".Activities.LauncherActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Thank you for installing the app,Since this is first Run, Please wait while downloading data."
+        android:id="@+id/textView"
+        android:layout_margin="15dp"
+        android:textColor="#193441"
+        android:textSize="30dp"
+        android:paddingTop="20dp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/downloadIndicator"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

@@ -1,45 +1,48 @@
 package DataSource;
 
+import android.content.SharedPreferences;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 /**
  * Created by Amit-PC on 10/24/2015.
  */
 public class Words {
         //TODO: get data from shared preference and server
 
-    public static final String[]WORDLIST = new String[]{
-            "The Woman in Black: Angel of Death",
-            "20 Once Again",
-            "Taken 3",
-            "Tevar",
-            "I",
-            "Blackhat",
-            "Spare Parts",
-            "The Wedding Ringer",
-            "Ex Machina",
-            "Mortdecai",
-            "Strange Magic",
-            "The Boy Next Door",
-            "The SpongeBob Movie: Sponge Out of Water",
-            "Kingsman: The Secret Service",
-            "Boonie Bears: Mystical Winter",
-            "Project Almanac",
-            "Running Man",
-            "Wild Card",
-            "It Follows",
-            "C'est si bon",
-            "Yennai Arindhaal",
-            "Shaun the Sheep Movie",
-            "Jupiter Ascending",
-            "Old Fashioned",
-            "Somewhere Only We Know",
-            "Fifty Shades of Grey",
-            "Dragon Blade",
-            "Danny Collins",
-            "Do You Believe?",
-            "Jalaibee",
-            "The Divergent Series: Insurgent",
-            "The Gunman",
-            "Get Hard",
-            "Home"
-    };
+
+    public static final ArrayList<String> WORDS = new ArrayList<String>();
+    public static final ArrayList<String> MEANING = new ArrayList<String>();
+    public static final ArrayList<String> EXAMPLE = new ArrayList<String>();
+    public static final ArrayList<String> MNEMONICS = new ArrayList<String>();
+
+    public static final int MAXWORD=WORDS.size();
+
+    public static void initialize(SharedPreferences preferences){
+        WORDS.clear();
+        MEANING.clear();
+        EXAMPLE.clear();
+        MNEMONICS.clear();
+        String jsonStringWord = preferences.getString("WordJSON","");
+        try {
+            JSONArray jsonArray = new JSONArray(jsonStringWord);
+            for(int i=1;i<jsonArray.length();i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                WORDS.add(jsonObject.getString("word"));
+                MEANING.add(jsonObject.getString("meaning"));
+                EXAMPLE.add(jsonObject.getString("example"));
+                MNEMONICS.add(jsonObject.getString("mnemonic"));
+            }
+            JSONObject jsonObject = jsonArray.getJSONObject(1);
+            Log.d("word",jsonObject.getString("word"));
+            Log.d("JSON Data", jsonArray.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

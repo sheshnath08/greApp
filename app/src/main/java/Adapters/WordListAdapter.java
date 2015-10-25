@@ -19,7 +19,6 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
 
     private final LayoutInflater mInflater;
     private final List<WordModel> mModels;
-    private String[] mDataset;
 
     public WordListAdapter(Context context, List<WordModel> models) {
         mInflater = LayoutInflater.from(context);

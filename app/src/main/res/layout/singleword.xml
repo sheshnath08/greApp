@@ -46,7 +46,9 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:layout_height="1dp"
-            android:background="#7bbee4"/>
+            android:background="#7bbee4"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
     </LinearLayout>
 
