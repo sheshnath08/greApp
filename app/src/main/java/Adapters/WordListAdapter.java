@@ -44,6 +44,58 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
         return mModels.size();
     }
 
+    public void animateTo(List<WordModel> models) {
+        applyAndAnimateRemovals(models);
+        applyAndAnimateAdditions(models);
+        applyAndAnimateMovedItems(models);
+    }
+
+
+    private void applyAndAnimateRemovals(List<WordModel> newModels) {
+        for (int i = mModels.size() - 1; i >= 0; i--) {
+            final WordModel model = mModels.get(i);
+            if (!newModels.contains(model)) {
+                removeItem(i);
+            }
+        }
+    }
+
+    private void applyAndAnimateAdditions(List<WordModel> newModels) {
+        for (int i = 0, count = newModels.size(); i < count; i++) {
+            final WordModel model = newModels.get(i);
+            if (!mModels.contains(model)) {
+                addItem(i, model);
+            }
+        }
+    }
+
+    private void applyAndAnimateMovedItems(List<WordModel> newModels) {
+        for (int toPosition = newModels.size() - 1; toPosition >= 0; toPosition--) {
+            final WordModel model = newModels.get(toPosition);
+            final int fromPosition = mModels.indexOf(model);
+            if (fromPosition >= 0 && fromPosition != toPosition) {
+                moveItem(fromPosition, toPosition);
+            }
+        }
+    }
+
+    public WordModel removeItem(int position) {
+        final WordModel model = mModels.remove(position);
+        notifyItemRemoved(position);
+        return model;
+    }
+
+    public void addItem(int position, WordModel model) {
+        mModels.add(position, model);
+        notifyItemInserted(position);
+    }
+
+    public void moveItem(int fromPosition, int toPosition) {
+        final WordModel model = mModels.remove(fromPosition);
+        mModels.add(toPosition, model);
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
     // Below class is for ViewHolder that inflates view to the list.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

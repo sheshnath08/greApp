@@ -22,7 +22,7 @@
         android:textColor="#000e3e"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingRight="8dp" />
@@ -37,7 +37,7 @@
             android:textColor="#1695A3"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:paddingBottom="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp" />

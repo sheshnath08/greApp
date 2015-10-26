@@ -2,10 +2,12 @@ package com.sheshnath.grevocabularybuilder.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,7 +23,7 @@ import Adapters.WordModel;
 import DataSource.Words;
 import Listners.RecyclerItemClickListner;
 
-public class WordListActivity extends AppCompatActivity {
+public class WordListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     SharedPreferences preferences =null;
     private RecyclerView mRecyclerView;
@@ -106,6 +108,9 @@ public class WordListActivity extends AppCompatActivity {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_word_list, menu);
+        final MenuItem item = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -118,8 +123,35 @@ public class WordListActivity extends AppCompatActivity {
                 editor.commit(); // Save all changed settings
                 Intent intent = new Intent(this,LauncherActivity.class);
                 startActivity(intent);
+                finish();
         }
         return true;
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        final List<WordModel> filteredModelList = filter(mModels, query);
+        mAdapter.animateTo(filteredModelList);
+        mRecyclerView.scrollToPosition(0);
+        return true;
+
+    }
+
+    private List<WordModel> filter(List<WordModel> models, String query) {
+        query = query.toLowerCase();
+
+        final List<WordModel> filteredModelList = new ArrayList<>();
+        for (WordModel model : models) {
+            final String text = model.getWord().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
+    }
 }

@@ -36,7 +36,7 @@
                 android:padding="5dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="#193441"
-                android:textSize="23dp"
+                android:textSize="28dp"
                 android:shadowColor="#7bbee4" />
             <TextView
                 android:id="@+id/wordCardmeaning"
@@ -47,7 +47,7 @@
                 android:layout_below="@+id/wordCardWord"
                 android:padding="10dp"
                 android:textColor="#1695A3"
-                android:textSize="18dp" />
+                android:textSize="20dp" />
             <TextView
                 android:id="@+id/wordCardExample"
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                 android:layout_below="@+id/wordCardmeaning"
                 android:padding="10dp"
                 android:textColor="#91AA9D"
-                android:textSize="18dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/wordCardMnemonics"
@@ -70,7 +70,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textColor="#002F2F"
-                android:textSize="18dp" />
+                android:textSize="20dp" />
 
         </RelativeLayout>
 

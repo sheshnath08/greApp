@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -22,10 +23,14 @@ import DataSource.Words;
 /**
  * Created by Sheshnath on 10/25/2015.
  */
+
+//TODO: Implement Splash Screen Activity
+
 public class LauncherActivity extends AppCompatActivity {
 
     SharedPreferences preferences =null;
     private ProgressBar mProgressBar;
+    private ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
