@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 
 import DataSource.Words;
 
@@ -53,6 +55,7 @@ public class LauncherActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
     }
 
     private void getData() {
@@ -105,9 +108,8 @@ public class LauncherActivity extends AppCompatActivity {
             // Download complete. Let us update UI
             mProgressBar.setVisibility(View.GONE);
             if (result == 1) {
-                Intent intent = new Intent(getBaseContext(), WordListActivity.class);
-                startActivity(intent);
-                finish();
+               startMainActivity();
+
             } else {
                 Toast.makeText(LauncherActivity.this, "Failed to fetch data!", Toast.LENGTH_LONG).show();
             }
@@ -119,6 +121,20 @@ public class LauncherActivity extends AppCompatActivity {
             editor.commit(); // Save all changed settings
             Words.initialize(preferences);
         }
+    }
+
+    private void startMainActivity() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run(){
+                Intent intent = new Intent(getBaseContext(), WordListActivity.class);
+
+                startActivity(intent);
+
+                finish();
+            }
+
+        },2000);
     }
 
 }
