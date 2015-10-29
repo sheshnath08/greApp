@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.sheshnath.grevocabularybuilder.R;
 
 import java.util.ArrayList;
@@ -32,7 +34,6 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
     private WordModel mModel;
 
 
-    //TODO get Data from server and parse it.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,19 +61,20 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
                         @Override
                         public void onItemClick(View view, int position) {
                             Intent intent = new Intent(getBaseContext(), WordCardActivity.class);
-                            intent.putExtra("wordNumber",position);
+                            intent.putExtra("wordNumber", position);
                             startActivity(intent);
                         }
                     })
             );
 
-
+       trackScreen(); //Analytics tracker
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //startActivity(new Intent(this, LauncherActivity.class));
+        trackScreen();
         preferences = getApplicationContext().getSharedPreferences("com.sheshnath.GREVocabBuilder",MODE_PRIVATE); // Get preferences file (0 = no option flags set)
         Log.w("WordListActivity", "second time");
         setContentView(R.layout.activity_word_list);
@@ -153,5 +155,13 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
             }
         }
         return filteredModelList;
+    }
+
+    private void trackScreen(){
+        final Tracker tracker = AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.SCREEN);
+        if(tracker != null){
+            tracker.setScreenName(getClass().getSimpleName());
+            tracker.send(new HitBuilders.ScreenViewBuilder().build());
+        }
     }
 }

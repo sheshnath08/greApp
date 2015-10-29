@@ -31,8 +31,8 @@ import DataSource.Words;
 public class LauncherActivity extends AppCompatActivity {
 
     SharedPreferences preferences =null;
-    private ProgressBar mProgressBar;
-    private ImageView mImageView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,10 @@ public class LauncherActivity extends AppCompatActivity {
         preferences = getSharedPreferences("com.sheshnath.grevocabularybuilder",MODE_PRIVATE);         // Get preferences file (0 = no option flags set)
         boolean firstRun = preferences.getBoolean("firstRun", true); // Is it first run? If not specified, use "true"
         Log.d("Into Launcher Activity", firstRun + "");
+        setContentView(R.layout.firstrun);
+        AnalyticsTrackers.sInstance=null;
         if (firstRun) {
             Log.w("activity", "first time");
-            setContentView(R.layout.firstrun);
-            mProgressBar = (ProgressBar)findViewById(R.id.downloadIndicator);
             getData();
             SharedPreferences.Editor editor = preferences.edit(); // Open the editor for our settings
             editor.putBoolean("firstRun", false); // It is no longer the first run
@@ -51,15 +51,13 @@ public class LauncherActivity extends AppCompatActivity {
         }
         else{
             //start wordListActivity
-            Intent intent = new Intent(getBaseContext(), WordListActivity.class);
-            startActivity(intent);
-            finish();
+           startMainActivity();
         }
+        AnalyticsTrackers.initialize(getApplicationContext());
 
     }
 
     private void getData() {
-        mProgressBar.setVisibility(View.VISIBLE);
         // Downloading data from below url
         final String url = "http://sheshnath.com/gre-app/wordlist.php";
         new AsyncHttpTask().execute(url);
@@ -106,7 +104,6 @@ public class LauncherActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer result) {
             // Download complete. Let us update UI
-            mProgressBar.setVisibility(View.GONE);
             if (result == 1) {
                startMainActivity();
 
@@ -134,7 +131,7 @@ public class LauncherActivity extends AppCompatActivity {
                 finish();
             }
 
-        },2000);
+        },1000);
     }
 
 }

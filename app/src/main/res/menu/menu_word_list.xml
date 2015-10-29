@@ -5,7 +5,7 @@
 
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/update_menu"
-        android:title="updateList"/>
+        android:title="Update Words"/>
 
     <item android:id="@+id/action_search"
         android:title="@string/action_search"

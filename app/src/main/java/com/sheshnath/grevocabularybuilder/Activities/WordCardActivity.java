@@ -11,6 +11,9 @@ import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.sheshnath.grevocabularybuilder.R;
 import Adapters.WordModel;
 import DataSource.Words;
@@ -52,7 +55,7 @@ public class WordCardActivity extends AppCompatActivity
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
         flingMin = 100;
         velocityMin=100;
-
+        trackScreen();
     }
 
 
@@ -149,5 +152,12 @@ public class WordCardActivity extends AppCompatActivity
         }
     }
 
+    private void trackScreen(){
+        final Tracker tracker = AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.SCREEN);
+        if(tracker != null){
+            tracker.setScreenName(getClass().getSimpleName());
+            tracker.send(new HitBuilders.ScreenViewBuilder().build());
+        }
+    }
 
 }

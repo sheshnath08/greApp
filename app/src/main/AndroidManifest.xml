@@ -16,7 +16,8 @@
         android:theme="@style/MyTheme" >
         <activity
             android:name=".Activities.LauncherActivity"
-            android:label="GRE Vocabulary Builder" >
+            android:label="GRE Vocabulary Builder"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +32,10 @@
             android:name=".Activities.WordCardActivity"
             android:label="Word Card"
             android:parentActivityName=".Activities.WordListActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

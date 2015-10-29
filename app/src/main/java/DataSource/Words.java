@@ -31,16 +31,14 @@ public class Words {
         String jsonStringWord = preferences.getString("WordJSON","");
         try {
             JSONArray jsonArray = new JSONArray(jsonStringWord);
-            for(int i=1;i<jsonArray.length();i++){
+            for(int i=0;i<jsonArray.length();i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 WORDS.add(jsonObject.getString("word"));
                 MEANING.add(jsonObject.getString("meaning"));
                 EXAMPLE.add(jsonObject.getString("example"));
                 MNEMONICS.add(jsonObject.getString("mnemonic"));
             }
-            JSONObject jsonObject = jsonArray.getJSONObject(1);
-            Log.d("word",jsonObject.getString("word"));
-            Log.d("JSON Data", jsonArray.toString());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
