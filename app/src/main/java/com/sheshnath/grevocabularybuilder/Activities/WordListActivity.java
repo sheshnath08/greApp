@@ -2,6 +2,8 @@ package com.sheshnath.grevocabularybuilder.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,11 +34,12 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
     private WordListAdapter mAdapter;
     private List<WordModel> mModels;
     private WordModel mModel;
-
+    private static final String BUNDLE_RECYCLER_LAYOUT = "wordlist.recycler.layout";
+    private static Parcelable recyclerViewState = null;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferences = getSharedPreferences("com.sheshnath.grevocabularybuilder",MODE_PRIVATE); // Get preferences file (0 = no option flags set)
         Log.w("WordListActivity", "second time");
@@ -44,6 +47,11 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         mRecyclerView = (RecyclerView) findViewById(R.id.wordListView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        if(recyclerViewState !=null){
+            Log.d("recycler state",recyclerViewState+"");
+            mRecyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
+        }
+        //Log.d("recyclerstate on create",recyclerViewState+"");
         Words.initialize(preferences);
         mModels = new ArrayList<>();
         for(int i=0;i<Words.WORDS.size();i++)
@@ -56,31 +64,30 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
             mAdapter = new WordListAdapter(this, mModels);
             mRecyclerView.setAdapter(mAdapter);
 
-            mRecyclerView.addOnItemTouchListener(
-                    new RecyclerItemClickListner(this, new RecyclerItemClickListner.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            Intent intent = new Intent(getBaseContext(), WordCardActivity.class);
-                            intent.putExtra("wordNumber", position);
-                            startActivity(intent);
-                        }
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListner(this, new RecyclerItemClickListner.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        recyclerViewState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+                        getIntent().putExtra(BUNDLE_RECYCLER_LAYOUT,recyclerViewState);
+                        Intent intent = new Intent(getBaseContext(), WordCardActivity.class);
+                        intent.putExtra("wordNumber", position);
+                        startActivity(intent);
+                    }
                     })
             );
 
        trackScreen(); //Analytics tracker
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
-        //startActivity(new Intent(this, LauncherActivity.class));
         trackScreen();
-        preferences = getApplicationContext().getSharedPreferences("com.sheshnath.GREVocabBuilder",MODE_PRIVATE); // Get preferences file (0 = no option flags set)
-        Log.w("WordListActivity", "second time");
-        setContentView(R.layout.activity_word_list);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        mRecyclerView = (RecyclerView) findViewById(R.id.wordListView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        preferences = getApplicationContext().getSharedPreferences("com.sheshnath.GREVocabBuilder", MODE_PRIVATE); // Get preferences file (0 = no option flags set)
+        Log.w("OnResume", "second time");
+        mRecyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
         mModels = new ArrayList<>();
         for(int i=0;i<Words.WORDS.size();i++)
         {
@@ -96,12 +103,15 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
                 new RecyclerItemClickListner(this, new RecyclerItemClickListner.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
+                        recyclerViewState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+                        getIntent().putExtra(BUNDLE_RECYCLER_LAYOUT,recyclerViewState);
                         Intent intent = new Intent(getBaseContext(), WordCardActivity.class);
-                        intent.putExtra("wordNumber",position);
+                        intent.putExtra("wordNumber", position);
                         startActivity(intent);
                     }
                 })
         );
+
     }
 
     /* To create option menu */
@@ -163,5 +173,17 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
             tracker.setScreenName(getClass().getSimpleName());
             tracker.send(new HitBuilders.ScreenViewBuilder().build());
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putParcelable(BUNDLE_RECYCLER_LAYOUT, mRecyclerView.getLayoutManager().onSaveInstanceState());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        recyclerViewState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
     }
 }

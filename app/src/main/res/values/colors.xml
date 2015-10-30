@@ -9,10 +9,10 @@
     <color name="word">#575757</color>
     <color name="word1">#2c7699</color>
     <color name="meaning">#363636</color>
-    <color name="bgcolor">#fafafa</color>
+    <color name="bgcolor">#EEEEEE</color>
     <color name="example">#363636</color>
     <color name="mnemonics">#363636</color>
     <color name="primary_text_material_light">#202020</color>
-    <color name="secondary_text_material_light">#737373</color>
+    <color name="secondary_text_material_light">#424242</color>
     <color name="windowBackground">#fafafa</color>
 </resources>

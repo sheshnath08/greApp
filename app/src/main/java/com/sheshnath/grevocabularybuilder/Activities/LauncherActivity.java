@@ -37,10 +37,10 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.firstrun);
         preferences = getSharedPreferences("com.sheshnath.grevocabularybuilder",MODE_PRIVATE);         // Get preferences file (0 = no option flags set)
         boolean firstRun = preferences.getBoolean("firstRun", true); // Is it first run? If not specified, use "true"
         Log.d("Into Launcher Activity", firstRun + "");
-        setContentView(R.layout.firstrun);
         AnalyticsTrackers.sInstance=null;
         if (firstRun) {
             Log.w("activity", "first time");
