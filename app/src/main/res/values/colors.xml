@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_material_dark">#3f51b5</color>
-    <color name="primary_dark_material_dark">#3f51b5</color>
-    <color name="accent_material_light"> #3f51b5</color>
+    <color name="primary_material_dark">#3369e8</color>
+    <color name="primary_dark_material_dark">#3369e8</color>
+    <color name="accent_material_light"> #3369e8</color>
     <color name="foreground_material_light">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="statusBarColor">#303f9f</color>
+    <color name="statusBarColor">#1565c0</color>
     <color name="word">#575757</color>
     <color name="word1">#2c7699</color>
     <color name="meaning">#363636</color>

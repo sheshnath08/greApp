@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#3f51b5"
+    android:background="#3369e8"
     tools:context=".Activities.LauncherActivity">
 
     <TextView

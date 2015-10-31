@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GRE Vocabulary Builder</string>
+    <string name="app_name">GRE Vocab Builder</string>
     <string name="title_activity_word_list">GRE Word List</string>
 
     <string name="hello_world">Hello world!</string>
