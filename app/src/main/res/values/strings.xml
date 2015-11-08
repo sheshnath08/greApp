@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GRE Vocab Builder</string>
     <string name="title_activity_word_list">GRE Word List</string>
-
+    <string name="banner_ad_unit_id">ca-app-pub-2213854205474977/9804459341</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>

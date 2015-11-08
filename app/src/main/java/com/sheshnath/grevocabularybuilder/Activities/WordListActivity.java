@@ -86,7 +86,6 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
         super.onResume();
         trackScreen();
         preferences = getApplicationContext().getSharedPreferences("com.sheshnath.GREVocabBuilder", MODE_PRIVATE); // Get preferences file (0 = no option flags set)
-        Log.w("OnResume", "second time");
         mRecyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
         mModels = new ArrayList<>();
         for(int i=0;i<Words.WORDS.size();i++)
@@ -170,7 +169,7 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
     private void trackScreen(){
         final Tracker tracker = AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.SCREEN);
         if(tracker != null){
-            tracker.setScreenName(getClass().getSimpleName());
+            tracker.setScreenName("WordList");
             tracker.send(new HitBuilders.ScreenViewBuilder().build());
         }
     }

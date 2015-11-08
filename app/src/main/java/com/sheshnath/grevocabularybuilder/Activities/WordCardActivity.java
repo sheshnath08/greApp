@@ -6,12 +6,12 @@ import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.sheshnath.grevocabularybuilder.R;
@@ -47,6 +47,9 @@ public class WordCardActivity extends AppCompatActivity
         mWordExample = (TextView)findViewById(R.id.wordCardExample);
         mWordMnemonics = (TextView)findViewById(R.id.wordCardMnemonics);
         mContainer = (RelativeLayout)findViewById(R.id.container);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         Intent intent = getIntent();
         wordPosition = intent.getIntExtra("wordNumber",0);
         Log.i("Wordposition from list:",wordPosition+"");
@@ -70,7 +73,6 @@ public class WordCardActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
    /* @Override
@@ -155,7 +157,7 @@ public class WordCardActivity extends AppCompatActivity
     private void trackScreen(){
         final Tracker tracker = AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.SCREEN);
         if(tracker != null){
-            tracker.setScreenName(getClass().getSimpleName());
+            tracker.setScreenName("WordCard");
             tracker.send(new HitBuilders.ScreenViewBuilder().build());
         }
     }
