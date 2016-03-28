@@ -2,7 +2,7 @@ package com.sheshnath.grevocabularybuilder.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Parcel;
+import android.graphics.Color;
 import android.os.Parcelable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -69,14 +71,13 @@ public class WordListActivity extends AppCompatActivity implements SearchView.On
                     @Override
                     public void onItemClick(View view, int position) {
                         recyclerViewState = mRecyclerView.getLayoutManager().onSaveInstanceState();
-                        getIntent().putExtra(BUNDLE_RECYCLER_LAYOUT,recyclerViewState);
+                        getIntent().putExtra(BUNDLE_RECYCLER_LAYOUT, recyclerViewState);
                         Intent intent = new Intent(getBaseContext(), WordCardActivity.class);
                         intent.putExtra("wordNumber", position);
                         startActivity(intent);
                     }
-                    })
-            );
-
+                })
+        );
        trackScreen(); //Analytics tracker
     }
 

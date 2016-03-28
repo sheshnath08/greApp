@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clickable="true">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:clickable="true">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom">
 
     <TextView
@@ -40,15 +47,17 @@
             android:paddingBottom="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp" />
-        <View
-            android:layout_width="fill_parent"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_height="1dp"
-            android:background="#DCDCDC"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_height="1dp"
+        android:background="#DCDCDC"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+    </LinearLayout>
